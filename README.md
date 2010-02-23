@@ -10,7 +10,7 @@ How to use
 
 To load the external class and instantiate it (default behavior):
 
-  new LazyLoader('MooClassName', [param_1, param_2, ...]);
+	new LazyLoader('MooClassName', [param_1, param_2, ...]);
 
 
 To load the external class and instantiate it later:
