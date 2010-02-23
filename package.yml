@@ -1,8 +1,7 @@
 --- 
 name: LazyLoader
 category: Utilities
-tags: 
-- lazy, loader, lazy loading, structure, pattern
+tags: [lazy, loader, lazy loading, structure, pattern]
 current: 0.1
 author: davidck
 contact: davidck@gmail.com
