@@ -62,6 +62,6 @@ Events
 
 Coming Soon
 -----------
-Please contact me if you have any suggestions or comments.
+Please contact me (david.chan@reol.com) if you have any suggestions or comments.
 
 1. Additional syntax to load class dependencies, currently, you must use the load event.

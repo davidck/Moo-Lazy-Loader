@@ -16,8 +16,8 @@ window.addEvent('domready', function()
   
   loader.addEvent('processEnd', function()
   {
-    alert (this.klass.getH());
-    // this.klass is an instance of Dummy.  getH() is a method of Dummy.
+    alert (this.getInstance().getArgs());
+    // this.getInstance() is an instance of Dummy.  getArgs() is a method of Dummy.
   });
 });
 </script>

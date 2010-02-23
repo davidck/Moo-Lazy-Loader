@@ -67,5 +67,9 @@ var LazyLoader = new Class(
   {
     var args = this.args;
     return new Klass(args[0], args[1], args[2], args[3], args[4], args[5]);
-  }.protect()
+  }.protect(),
+  getInstance: function()
+  {
+    return this.klass;
+  }
 });
