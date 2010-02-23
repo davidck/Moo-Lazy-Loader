@@ -1,14 +1,16 @@
 /*
 --- 
-provides: LazyLoader
-license: MIT-style
+description: LazyLoader
+authors: 
+- David Chan CK (http://www.reol.com)
+license:
+- MIT-style license
 requires: 
   core/1.2.4: '*'
 	more/1.2.4.x:
 	- Utilities/Assets
-description: Allows your application to load in external classes and lets you control when you want to instantiate the external class.
-authors: 
-- David Chan CK (REOL)
+provides:
+- LazyLoader
 ...
 */
 var LazyLoader = new Class(
