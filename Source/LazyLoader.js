@@ -6,11 +6,9 @@ authors:
 license:
 - MIT-style license
 requires: 
-  core/1.2.4: '*'
-	more/1.2.4.x:
-	- Utilities/Assets
-provides:
-- LazyLoader
+- core/1.2.4: '*'
+- more/1.2.4.2: [Utilities.Assets]
+provides: [LazyLoader]
 ...
 */
 var LazyLoader = new Class(
