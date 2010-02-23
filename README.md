@@ -55,6 +55,8 @@ Events
 ------
 
 * onLoad : External script has been loaded.
+* onProcessStart: Before processing of the loaded external script.
+* onProcessEnd: After processing of the loaded external script.
 
 Coming Soon
 -----------
