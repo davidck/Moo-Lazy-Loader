@@ -1,10 +1,9 @@
 /*
 --- 
-provides: 
-- LazyLoader
+provides: LazyLoader
 license: MIT-style
 requires: 
-  core/1.2.4: *
+  core/1.2.4: '*'
 	more/1.2.4.x:
 	- Utilities/Assets
 description: Allows your application to load in external classes and lets you control when you want to instantiate the external class.
