@@ -2,7 +2,7 @@
 name: LazyLoader
 category: Utilities
 tags: [lazy, loader, lazy loading, structure, pattern]
-current: 0.1
+current: 1.0
 author: davidck
 contact: davidck@gmail.com
 demo: http://www.staticdynamic.ca/reol/LazyLoader/Demos/
