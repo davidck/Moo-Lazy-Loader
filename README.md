@@ -54,7 +54,7 @@ Options
 Events
 ------
 
-* pageShown : The function to execute when the a page is shown. Gets passed the page index and the instance of MerryGoRound.
+* onLoad : External script has been loaded.
 
 Coming Soon
 -----------
