@@ -12,26 +12,37 @@ How to use
 
 To load the external class and instantiate it (default behavior):
 
-	new LazyLoader('MooClassName', [param_1, param_2, ...]);
+	new LazyLoader('MooClassName', [arg_0, arg_1, ...]);
 
 
 To load the external class and instantiate it later:
 
-	new LazyLoader('MooClassName', [param_1, param_2, ...],
+	new LazyLoader('MooClassName', [arg_0, arg_1, ...],
 	{
 		autoStart: false,
 		load: function()
 		{
-			// Do what you have to do
+			// Code
 			// ...
 			this.process(myLoader);
 		}
 	});
 
+To get the reference of an instance:
+
+	new LazyLoader('MooClassName', [arg_0, arg_1, ...],
+	{
+		load: function()
+		{
+			// Code
+			// ...
+			this.getInstance().myFunc();
+		}
+	});
 
 An example that uses some options:
 
-	new LazyLoader('MooClassName', [param_1, param_2, ...],
+	new LazyLoader('MooClassName', [arg_0, arg_1, ...],
 	{
 		path: '/javascript/{Klass}.js'
 	});

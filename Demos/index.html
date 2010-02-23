@@ -17,7 +17,8 @@ window.addEvent('domready', function()
   loader.addEvent('processEnd', function()
   {
     alert (this.getInstance().getArgs());
-    // this.getInstance() is an instance of Dummy.  getArgs() is a method of Dummy.
+    // this.getInstance() returns an instance of Dummy.
+    // this.getInstance().getArgs() is a method of Dummy.
   });
 });
 </script>
