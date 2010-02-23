@@ -1,10 +1,17 @@
 /*
- * PDE - JavaScript
- * Copyright 2010. All rights reserved.
- *
- * Class: LazyLoader
- * Description: Allows for lazy loading of external classes.
- */
+--- 
+provides: 
+- LazyLoader
+license: MIT-style
+requires: 
+  core/1.2.4: *
+	more/1.2.4.x:
+	- Utilities/Assets
+description: Allows your application to load in external classes and lets you control when you want to instantiate the external class.
+authors: 
+- David Chan CK (REOL)
+...
+*/
 var LazyLoader = new Class(
 {
   Implements: [Events, Options],
