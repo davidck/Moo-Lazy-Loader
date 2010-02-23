@@ -10,15 +10,20 @@
 window.addEvent('domready', function()
 {
   alert ('domready');
-  var loader = new LazyLoader('Dummy', ['1010']);
+  
+  var loader = new LazyLoader('Dummy', ['arg 1', 'arg 2']);
+  //Dummy is the loaded class, see this: http://www.staticdynamic.ca/reol/LazyLoader/Demos/Dummy.js
+  
   loader.addEvent('processEnd', function()
   {
     alert (this.klass.getH());
+    // this.klass is an instance of Dummy.  getH() is a method of Dummy.
   });
 });
 </script>
 </head>
 
 <body>
+<h1>To understand this demo, please view the page source and comments</h1>
 </body>
 </html>
