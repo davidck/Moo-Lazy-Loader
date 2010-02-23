@@ -2,11 +2,12 @@ var Dummy = new Class(
 {
   initialize: function(a, b)
   {
-    alert ('init');
-    this.h = h;
+    alert ('dummy init');
+    this.a = a;
+    this.b = b;
   },
   getArgs: function()
   {
-    return a+' and '+b;
+    return this.a+' and '+this.b;
   }
 });
