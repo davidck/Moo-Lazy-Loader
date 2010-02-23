@@ -1,7 +1,9 @@
 LazyLoader
 ==========
 
-Allows your application to load in external classes and lets you control when you want to instantiate the external class.
+Allows your application to load in external classes and lets you control when you want to instantiate the loaded class.
+
+This is useful if you are building a large website and are packaging all your classes into one JavaScript file.  Sometimes you want some scripts to be deferred and requested only when it is needed.  This is when LazyLoader will be useful to you.
 
 ![Screenshot](http://www.staticdynamic.ca/reol/LazyLoader/icon.png)
 
@@ -63,4 +65,3 @@ Coming Soon
 Please contact me if you have any suggestions or comments.
 
 1. Additional syntax to load class dependencies, currently, you must use the load event.
-2. Demo usage.
