@@ -32,7 +32,7 @@ To get the reference of an instance:
 
 	new LazyLoader('MooClassName', [arg_0, arg_1, ...],
 	{
-		load: function()
+		processEnd: function()
 		{
 			// Code
 			// ...
