@@ -54,8 +54,11 @@ var LazyLoader = new Class(
   {
     var klass = null;
     this.fireEvent('processStart');
-    eval('var Klass = '+this.klass);
-    this.klass = this.instantiate(Klass);
+    if (!$defined(this.instance))
+    {
+      eval('this.Klass = '+this.klass);
+    }
+    this.instance = this.instantiate(this.Klass);
     this.fireEvent('processEnd');
   },
   /*
@@ -70,6 +73,6 @@ var LazyLoader = new Class(
   }.protect(),
   getInstance: function()
   {
-    return this.klass;
+    return this.instance;
   }
 });
