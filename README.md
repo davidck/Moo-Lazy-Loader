@@ -61,8 +61,8 @@ Arguments
 Options
 -------
 
-* autoStart      : (boolean) Selector to pass to element.getChildren to determine scrolling elements. Defaults to '*'.
-* path           : (string) The path to your class, use {Klass} in your string to substitute it to the mooClassName.
+* autoStart      : (boolean) Whether or not your class will be instantiated once it's loaded.  Defaults to true
+* path           : (string) The path to your class, use {Klass} in your string to substitute it to the mooClassName.  Defaults to same path.
 
 Events
 ------
