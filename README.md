@@ -33,7 +33,7 @@ To get the reference of an instance:
 	var loader = new LazyLoader('MooClassName', [arg_0, arg_1, ...]);
 	loader.addEvent('processEnd', function()
 	{
-		this.getInstance().doSomething(); // Do something is the instance method.
+		this.getInstance().doSomething(); // doSomething is an instance method.
 	}.bind(loader));
 
 An example that uses some options:
