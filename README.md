@@ -30,10 +30,10 @@ To load the external class and instantiate it later:
 
 To get the reference of an instance:
 
-	new LazyLoader('MooClassName', [arg_0, arg_1, ...]);
+	var loader = new LazyLoader('MooClassName', [arg_0, arg_1, ...]);
 	loader.addEvent('processEnd', function()
 	{
-		this.getInstance().myFunc();
+		this.getInstance().doSomething(); // Do something is the instance method.
 	}.bind(loader));
 
 An example that uses some options:
