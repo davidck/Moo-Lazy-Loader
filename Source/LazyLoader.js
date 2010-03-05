@@ -22,7 +22,7 @@ var LazyLoader = new Class(
     onProcessEnd: $empty(thisElement, event),
   */
     autoStart: true,
-    path: '{Klass}.js',
+    path: '{Klass}.js'
   },
   initialize: function(klass, args, options)
   {

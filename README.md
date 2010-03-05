@@ -67,6 +67,14 @@ Events
 * onProcessStart: Before processing of the loaded external script.
 * onProcessEnd: After processing of the loaded external script.
 
+Release Notes
+-------------
+
+1.1.1:
+  * MSIE7 fix.
+1.1:
+  * Allows multiple instances.
+
 Coming Soon
 -----------
 Please contact me (david.chan@reol.com) if you have any suggestions or comments.
