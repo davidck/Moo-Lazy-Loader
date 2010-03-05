@@ -70,10 +70,8 @@ Events
 Release Notes
 -------------
 
-1.1.1:
-  * MSIE7 fix.
-1.1:
-  * Allows multiple instances.
+* 1.1.1  : MSIE7 fix.
+* 1.1    : Allows multiple instances.
 
 Coming Soon
 -----------
