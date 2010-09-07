@@ -11,8 +11,8 @@ requires:
 provides: [LazyLoader]
 ...
 */
-var LazyLoader = new Class(
-{
+var LazyLoader = new Class
+({
   Implements: [Events, Options],
   options:
   {
@@ -21,7 +21,7 @@ var LazyLoader = new Class(
     onProcessStart: $empty(thisElement, event),
     onProcessEnd: $empty(thisElement, event),
   */
-    autoStart: true,
+    auto_start: true,
     path: '{Klass}.js'
   },
   initialize: function(klass, args, options)
@@ -31,9 +31,20 @@ var LazyLoader = new Class(
     
     this.klass = klass;
     this.args = args;
+    this.instance;
     
     this.load();
   },
+  /*
+    If you have more than six parameters in your constructor, then something's probably wrong with your design.
+    However, the root of the issue is not being able to transform an array to parameters.
+    If you absolutely need more than six params, then override this method.
+  */
+  instantiate: function(Klass)
+  {
+    var args = this.args;
+    return new Klass(args[0], args[1], args[2], args[3], args[4], args[5]);
+  }.protect(),
   load: function()
   {
     var opts = this.options, script = opts.path.substitute({Klass: this.klass});
@@ -45,7 +56,7 @@ var LazyLoader = new Class(
   loaded: function()
   {
     this.fireEvent('load');
-    if (this.options.autoStart)
+    if (this.options.auto_start)
     {
       this.process();
     }
@@ -61,18 +72,40 @@ var LazyLoader = new Class(
     this.instance = this.instantiate(this.Klass);
     this.fireEvent('processEnd');
   },
-  /*
-    If you have more than six parameters in your constructor, then something's probably wrong with your design.
-    However, the root of the issue is not being able to transform an array to parameters.
-    If you absolutely need more than six params, then override this method.
-  */
-  instantiate: function(Klass)
-  {
-    var args = this.args;
-    return new Klass(args[0], args[1], args[2], args[3], args[4], args[5]);
-  }.protect(),
-  getInstance: function()
+  get_instance: function()
   {
     return this.instance;
+  }
+});
+
+LazyLoader.Multiple = new Class (
+{
+  Implements: [Events, Options],
+  Extends: LazyLoader,
+  initialize: function(klasses, options)
+  {
+    this.setOptions(options);
+    var opts = this.options;
+
+    this.klasses = klasses;
+
+    this.load(0);
+  },
+  load: function(i)
+  {
+    var opts = this.options, script;
+
+    if (i > this.klasses.length-1)
+    {
+      this.fireEvent('load');
+      return;
+    }
+
+    script = opts.path.substitute({Klass: this.klasses[i]});
+
+    new Asset.javascript(script,
+    {
+      'onload': this.load.bind(this, i+1)
+    });
   }
 });

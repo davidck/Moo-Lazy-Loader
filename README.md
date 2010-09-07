@@ -42,6 +42,22 @@ An example that uses some options:
 	{
 		path: '/javascript/{Klass}.js'
 	});
+	
+NEW - To load multiple classes at once
+
+  var loader = new LazyLoader.Multiple
+  (
+    [
+      'GoogleMaps.Control',
+      'GoogleMaps.Control.Type',
+      'GoogleMaps.Control.Zoom',
+      'GoogleMaps.Marker'
+    ],
+    {
+      path: '/javascript/{Klass}.js'
+    }
+  ); 
+  loader.addEvent('load', this.process_after_loading.bind(this));
   
 Syntax
 ------
@@ -70,6 +86,7 @@ Events
 Release Notes
 -------------
 
+* 1.2    : Allows loading of multiple classes.
 * 1.1.1  : MSIE7 fix.
 * 1.1    : Allows multiple instances.
 
