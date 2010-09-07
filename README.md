@@ -5,12 +5,12 @@ Allows your application to selectively load classes and lets you control when yo
 
 This is useful if you are building a large website and are packaging all your classes into one JavaScript file.  Sometimes you want some scripts to be deferred and requested only when they are needed.  This is when LazyLoader will be useful to you.
 
+NEW (2010/SEP/07) - 1.2 Added support for loading in multiple classes.
+
 ![Screenshot](http://www.staticdynamic.ca/reol/LazyLoader/icon.png)
 
 How to use
 ----------
-
-NEW (2010/SEP/07) - Added support for loading in multiple classes.
 
 To load the external class and instantiate it (default behavior):
 
