@@ -45,18 +45,16 @@ An example that uses some options:
 	
 NEW - To load multiple classes at once
 
-  var loader = new LazyLoader.Multiple
-  (
-    [
-      'GoogleMaps.Control',
-      'GoogleMaps.Control.Type',
-      'GoogleMaps.Control.Zoom',
-      'GoogleMaps.Marker'
-    ],
-    {
-      path: '/javascript/{Klass}.js'
-    }
-  ); 
+  var loader = new LazyLoader.Multiple(
+  [
+    'GoogleMaps.Control',
+    'GoogleMaps.Control.Type',
+    'GoogleMaps.Control.Zoom',
+    'GoogleMaps.Marker'
+  ],
+  {
+    path: '/javascript/{Klass}.js'
+  }); 
   loader.addEvent('load', this.process_after_loading.bind(this));
   
 Syntax
