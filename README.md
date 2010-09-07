@@ -10,6 +10,8 @@ This is useful if you are building a large website and are packaging all your cl
 How to use
 ----------
 
+NEW (2010/SEP/07) - Added support for loading in multiple classes.
+
 To load the external class and instantiate it (default behavior):
 
 	new LazyLoader('MooClassName', [arg_0, arg_1, ...]);
@@ -91,5 +93,3 @@ Release Notes
 Coming Soon
 -----------
 Please contact me (david.chan@reol.com) if you have any suggestions or comments.
-
-1. Additional syntax to load class dependencies, currently, you must use the load event.
