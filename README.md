@@ -5,8 +5,7 @@ Allows your application to selectively load classes and lets you control when yo
 
 This is useful if you are building a large website and are packaging all your classes into one JavaScript file.  Sometimes you want some scripts to be deferred and requested only when they are needed.  This is when LazyLoader will be useful to you.
 
-NEW (2011/FEB/28) - 1.3 Now allows any numbers of arguments. Improved support for MooTools 1.2, 1.3 and 1.3.1.
-NEW (2010/SEP/07) - 1.2 Added support for loading in multiple classes.
+NEW (2011/FEB/28) - 1.3 Now allows any numbers of arguments. Improved support for MooTools 1.2 and 1.3.
 
 ![Screenshot](http://www.staticdynamic.ca/reol/LazyLoader/icon.png)
 
@@ -87,7 +86,7 @@ Events
 Release Notes
 -------------
 
-* 1.3    : Now allows any numbers of arguments. Improved support for MooTools 1.2, 1.3 and 1.3.1.
+* 1.3    : Now allows any numbers of arguments. Improved support for MooTools 1.2 and 1.3.
 * 1.2    : Allows loading of multiple classes.
 * 1.1.1  : MSIE7 fix.
 * 1.1    : Allows multiple instances.
