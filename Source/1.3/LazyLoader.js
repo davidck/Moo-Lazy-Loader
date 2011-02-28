@@ -6,8 +6,8 @@ authors:
 license:
 - MIT-style license
 requires: 
-- core/1.2.4: '*'
-- more/1.2.4.2: [Utilities.Assets]
+- core/1.3: '*'
+- more/1.3.1: [Utilities.Assets]
 provides: [LazyLoader]
 ...
 */
@@ -21,7 +21,7 @@ var LazyLoader = new Class
     onProcessStart: $empty(thisElement, event),
     onProcessEnd: $empty(thisElement, event),
   */
-    auto_start: true,
+    autoStart: true,
     path: '{Klass}.js'
   },
   initialize: function(klass, args, options)
@@ -35,11 +35,6 @@ var LazyLoader = new Class
     
     this.load();
   },
-  /*
-    If you have more than six parameters in your constructor, then something's probably wrong with your design.
-    However, the root of the issue is not being able to transform an array to parameters.
-    If you absolutely need more than six params, then override this method.
-  */
   instantiate: function(Klass)
   {
     var args = this.args;
@@ -56,7 +51,7 @@ var LazyLoader = new Class
   loaded: function()
   {
     this.fireEvent('load');
-    if (this.options.auto_start)
+    if (this.options.autoStart)
     {
       this.process();
     }
@@ -65,14 +60,12 @@ var LazyLoader = new Class
   {
     var klass = null;
     this.fireEvent('processStart');
-    if (!$defined(this.instance))
-    {
+    if (this.instance == undefined)
       eval('this.Klass = '+this.klass);
-    }
     this.instance = this.instantiate(this.Klass);
     this.fireEvent('processEnd');
   },
-  get_instance: function()
+  getInstance: function()
   {
     return this.instance;
   }
