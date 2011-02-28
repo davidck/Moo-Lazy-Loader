@@ -1,6 +1,6 @@
 // MooTools: the javascript framework.
-// Load this file's selection again by visiting: http://mootools.net/more/4e27640bc5a969db3bc434299234091f 
-// Or build this file again with packager using: packager build More/Assets More/Tips
+// Load this file's selection again by visiting: http://mootools.net/more/c32f708773ddbf0fa3b0b712d51823ca 
+// Or build this file again with packager using: packager build More/Class.Refactor More/Assets
 /*
 ---
 
@@ -32,6 +32,49 @@ provides: [MooTools.More]
 MooTools.More = {
 	'version': '1.3.1.1',
 	'build': '0292a3af1eea242b817fecf9daa127417d10d4ce'
+};
+
+
+/*
+---
+
+script: Class.Refactor.js
+
+name: Class.Refactor
+
+description: Extends a class onto itself with new property, preserving any items attached to the class's namespace.
+
+license: MIT-style license
+
+authors:
+  - Aaron Newton
+
+requires:
+  - Core/Class
+  - /MooTools.More
+
+# Some modules declare themselves dependent on Class.Refactor
+provides: [Class.refactor, Class.Refactor]
+
+...
+*/
+
+Class.refactor = function(original, refactors){
+
+	Object.each(refactors, function(item, name){
+		var origin = original.prototype[name];
+		if (origin && origin.$origin) origin = origin.$origin;
+		original.implement(name, (typeof item == 'function') ? function(){
+			var old = this.previous;
+			this.previous = origin || function(){};
+			var value = item.apply(this, arguments);
+			this.previous = old;
+			return value;
+		} : item);
+	});
+
+	return original;
+
 };
 
 
@@ -166,3 +209,4 @@ var Asset = {
 	}
 
 };
+

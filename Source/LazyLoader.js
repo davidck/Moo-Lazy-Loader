@@ -8,6 +8,7 @@ license:
 requires: 
 - core/1.3: '*'
 - more/1.3.1: [Utilities.Assets]
+- more/1.3.1: [Class.Refactor]
 provides: [LazyLoader]
 ...
 */
@@ -35,10 +36,21 @@ var LazyLoader = new Class
     
     this.load();
   },
-  instantiate: function(Klass)
+  emulate: function()
   {
-    var args = this.args;
-    return new Klass(args[0], args[1], args[2], args[3], args[4], args[5]);
+    var args = arguments;
+  },
+  instantiate: function()
+  {
+    var Klass = this.Klass;
+    Class.refactor(Klass,
+    {
+      initialize: function()
+      {
+        this.previous.apply(this, arguments[0]);
+      }
+    });
+    return new Klass(arguments);
   }.protect(),
   load: function()
   {
@@ -62,7 +74,7 @@ var LazyLoader = new Class
     this.fireEvent('processStart');
     if (this.instance == undefined)
       eval('this.Klass = '+this.klass);
-    this.instance = this.instantiate(this.Klass);
+    this.instance = this.instantiate.apply(this, this.args);
     this.fireEvent('processEnd');
   },
   getInstance: function()
