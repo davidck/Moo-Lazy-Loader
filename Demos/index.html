@@ -1,22 +1,26 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Lazy Loader Demo</title>
-<script type="text/javascript" src="mootools-core-1.3.1-full-nocompat.js"></script>
-<script type="text/javascript" src="mootools-more-1.3.1.1.js"></script>
-<script type="text/javascript" src="../Source/LazyLoader.js"></script>
+<title>ScriptLoader Demo</title>
+<link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+<style>
+body {
+  font-family: 'Lato', sans-serif;
+}
+</style>
+
+<script type="text/javascript" src="MooTools-Core-1.5.2.js"></script>
+<script type="text/javascript" src="MooTools-More-1.5.2.js"></script><!-- Requires Assets and Class.Refactor -->
+
+<script type="text/javascript" src="../Source/ScriptLoader.js"></script>
 <script type="text/javascript">
 window.addEvent('domready', function()
 {
-  alert ('domready');
-  
-  var loader = new LazyLoader('Dummy', ['arg 1', 'arg 2']);
-  //Dummy is the loaded class, see this: http://www.staticdynamic.ca/reol/LazyLoader/Demos/Dummy.js
-  
+  var loader = new ScriptLoader('Dummy', ['arg 1', 'arg 2']);
   loader.addEvent('processEnd', function()
   {
-    alert (this.getInstance().getArgs());
+    console.log(this.getInstance().getArgs());
     // this.getInstance() returns an instance of Dummy.
     // this.getInstance().getArgs() is a method of Dummy.
   });
@@ -25,42 +29,7 @@ window.addEvent('domready', function()
 </head>
 
 <body>
-<h1>To understand this demo, please view the page source and comments</h1>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- Google Analytics -->
-<script type="text/javascript">
-  var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-  document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-</script>
-<script type="text/javascript">
-  try {
-    var pageTracker = _gat._getTracker("UA-11358439-1");
-    // Cookied already: 
-    pageTracker._trackPageview();
-  } catch(err) {}
-</script>
-
+  <h1>MooTools ScriptLoader</h1>
+  <h2>To understand this demo, please open the web console and view source.</h2>
 </body>
 </html>

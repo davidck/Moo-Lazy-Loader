@@ -1,25 +1,23 @@
-LazyLoader
-==========
+ScriptLoader
+============
 
 Allows your application to selectively load classes and lets you control when you want to instantiate the loaded class.
 
-This is useful if you are building a large website and are packaging all your classes into one JavaScript file.  Sometimes you want some scripts to be deferred and requested only when they are needed.  This is when LazyLoader will be useful to you.
+This is useful if you are building a large website and are packaging all your classes into one JavaScript file.  Sometimes you want some scripts to be deferred and requested only when they are needed.  This is when ScriptLoader will be useful to you.
 
-NEW (2011/FEB/28) - 1.3 Now allows any numbers of arguments. Improved support for MooTools 1.2 and 1.3.
-
-![Screenshot](http://www.staticdynamic.ca/reol/LazyLoader/icon.png)
+NEW (2015/SEP/22) - 1.4 Mootools 1.5.2 Support.
 
 How to use
 ----------
 
 To load the external class and instantiate it (default behavior):
 
-	new LazyLoader('MooClassName', [arg_0, arg_1, ...]);
+	new ScriptLoader('MooClassName', [arg_0, arg_1, ...]);
 
 
 To load the external class and instantiate it later:
 
-	var loader = new LazyLoader('MooClassName', [arg_0, arg_1, ...],
+	var loader = new ScriptLoader('MooClassName', [arg_0, arg_1, ...],
 	{
 		autoStart: false
 	});
@@ -32,7 +30,7 @@ To load the external class and instantiate it later:
 
 To get the reference of an instance:
 
-	var loader = new LazyLoader('MooClassName', [arg_0, arg_1, ...]);
+	var loader = new ScriptLoader('MooClassName', [arg_0, arg_1, ...]);
 	loader.addEvent('processEnd', function()
 	{
 		this.getInstance().doSomething(); // doSomething is an instance method.
@@ -40,14 +38,14 @@ To get the reference of an instance:
 
 An example that uses some options:
 
-	new LazyLoader('MooClassName', [arg_0, arg_1, ...],
+	new ScriptLoader('MooClassName', [arg_0, arg_1, ...],
 	{
 		path: '/javascript/{Klass}.js'
 	});
 	
 NEW - To load multiple classes at once
 
-	var loader = new LazyLoader.Multiple(
+	var loader = new ScriptLoader.Multiple(
 	[
 		'GoogleMaps.Control',
 		'GoogleMaps.Control.Type',
@@ -62,7 +60,7 @@ NEW - To load multiple classes at once
 Syntax
 ------
 
-  new LazyLoader(mooClassName, arguments, [options])
+  new ScriptLoader(mooClassName, arguments, [options])
   
 Arguments
 ---------
@@ -86,11 +84,9 @@ Events
 Release Notes
 -------------
 
+* 1.4    : MooTools 1.5.2 support. Renamed from LazyLoader to ScriptLoader
 * 1.3    : Now allows any numbers of arguments. Improved support for MooTools 1.2 and 1.3.
 * 1.2    : Allows loading of multiple classes.
 * 1.1.1  : MSIE7 fix.
 * 1.1    : Allows multiple instances.
 
-Coming Soon
------------
-Please contact me (david.chan@reol.com) if you have any suggestions or comments.

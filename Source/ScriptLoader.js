@@ -1,18 +1,19 @@
+
 /*
 --- 
-description: LazyLoader
+description: ScriptLoader
 authors: 
-- David Chan CK (http://www.reol.com)
+- David Chan CK (http://www.davidchan.com)
 license:
 - MIT-style license
 requires: 
-- core/1.3: '*'
-- more/1.3.1: [Utilities.Assets]
-- more/1.3.1: [Class.Refactor]
-provides: [LazyLoader]
+- core/1.5.2: '*'
+- more/1.5.2: [Utilities.Assets]
+- more/1.5.2: [Class.Refactor]
+provides: [ScriptLoader]
 ...
 */
-var LazyLoader = new Class
+var ScriptLoader = new Class
 ({
   Implements: [Events, Options],
   options:
@@ -83,10 +84,10 @@ var LazyLoader = new Class
   }
 });
 
-LazyLoader.Multiple = new Class (
+ScriptLoader.Multiple = new Class (
 {
   Implements: [Events, Options],
-  Extends: LazyLoader,
+  Extends: ScriptLoader,
   initialize: function(klasses, options)
   {
     this.setOptions(options);

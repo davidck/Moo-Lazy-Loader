@@ -1,6 +1,7 @@
-// MooTools: the javascript framework.
-// Load this file's selection again by visiting: http://mootools.net/more/c32f708773ddbf0fa3b0b712d51823ca 
-// Or build this file again with packager using: packager build More/Class.Refactor More/Assets
+/* MooTools: the javascript framework. license: MIT-style license. copyright: Copyright (c) 2006-2015 [Valerio Proietti](http://mad4milk.net/).*/ 
+/*
+Web Build: http://mootools.net/more/builder/c32f708773ddbf0fa3b0b712d51823ca
+*/
 /*
 ---
 
@@ -20,6 +21,7 @@ authors:
   - Tim Wienk
   - Christoph Pojer
   - Aaron Newton
+  - Jacob Thornton
 
 requires:
   - Core/MooTools
@@ -30,10 +32,9 @@ provides: [MooTools.More]
 */
 
 MooTools.More = {
-	'version': '1.3.1.1',
-	'build': '0292a3af1eea242b817fecf9daa127417d10d4ce'
+	version: '1.5.2',
+	build: 'facdf0458d10fd214aa9f5fa71935a23a772cc48'
 };
-
 
 /*
 ---
@@ -51,7 +52,7 @@ authors:
 
 requires:
   - Core/Class
-  - /MooTools.More
+  - MooTools.More
 
 # Some modules declare themselves dependent on Class.Refactor
 provides: [Class.refactor, Class.Refactor]
@@ -63,10 +64,10 @@ Class.refactor = function(original, refactors){
 
 	Object.each(refactors, function(item, name){
 		var origin = original.prototype[name];
-		if (origin && origin.$origin) origin = origin.$origin;
+		origin = (origin && origin.$origin) || origin || function(){};
 		original.implement(name, (typeof item == 'function') ? function(){
 			var old = this.previous;
-			this.previous = origin || function(){};
+			this.previous = origin;
 			var value = item.apply(this, arguments);
 			this.previous = old;
 			return value;
@@ -76,7 +77,6 @@ Class.refactor = function(original, refactors){
 	return original;
 
 };
-
 
 /*
 ---
@@ -94,58 +94,77 @@ authors:
 
 requires:
   - Core/Element.Event
-  - /MooTools.More
+  - MooTools.More
 
 provides: [Assets]
 
 ...
 */
+;(function(){
 
-var Asset = {
+var Asset = this.Asset = {
 
 	javascript: function(source, properties){
 		if (!properties) properties = {};
 
 		var script = new Element('script', {src: source, type: 'text/javascript'}),
 			doc = properties.document || document,
-			loaded = 0,
-			loadEvent = properties.onload || properties.onLoad;
-
-		var load = loadEvent ? function(){ // make sure we only call the event once
-			if (++loaded == 1) loadEvent.call(this);
-		} : function(){};
+			load = properties.onload || properties.onLoad;
 
 		delete properties.onload;
 		delete properties.onLoad;
 		delete properties.document;
 
-		return script.addEvents({
-			load: load,
-			readystatechange: function(){
-				if (['loaded', 'complete'].contains(this.readyState)) load.call(this);
+		if (load){
+			if (!script.addEventListener){
+				script.addEvent('readystatechange', function(){
+					if (['loaded', 'complete'].contains(this.readyState)) load.call(this);
+				});
+			} else {
+				script.addEvent('load', load);
 			}
-		}).set(properties).inject(doc.head);
+		}
+
+		return script.set(properties).inject(doc.head);
 	},
 
 	css: function(source, properties){
 		if (!properties) properties = {};
 
-		var link = new Element('link', {
-			rel: 'stylesheet',
-			media: 'screen',
-			type: 'text/css',
-			href: source
+		var load = properties.onload || properties.onLoad,
+			doc = properties.document || document,
+			timeout = properties.timeout || 3000;
+
+		['onload', 'onLoad', 'document'].each(function(prop){
+			delete properties[prop];
 		});
 
-		var load = properties.onload || properties.onLoad,
-			doc = properties.document || document;
+		var link = new Element('link', {
+			type: 'text/css',
+			rel: 'stylesheet',
+			media: 'screen',
+			href: source
+		}).setProperties(properties).inject(doc.head);
 
-		delete properties.onload;
-		delete properties.onLoad;
-		delete properties.document;
-
-		if (load) link.addEvent('load', load);
-		return link.set(properties).inject(doc.head);
+		if (load){
+			// based on article at http://www.yearofmoo.com/2011/03/cross-browser-stylesheet-preloading.html
+			var loaded = false, retries = 0;
+			var check = function(){
+				var stylesheets = document.styleSheets;
+				for (var i = 0; i < stylesheets.length; i++){
+					var file = stylesheets[i];
+					var owner = file.ownerNode ? file.ownerNode : file.owningElement;
+					if (owner && owner == link){
+						loaded = true;
+						return load.call(link);
+					}
+				}
+				retries++;
+				if (!loaded && retries < timeout / 50) return setTimeout(check, 50);
+			};
+			setTimeout(check, 0);
+		}
+		return link;
 	},
 
 	image: function(source, properties){
@@ -210,3 +229,4 @@ var Asset = {
 
 };
 
+})();
